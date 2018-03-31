@@ -7,12 +7,9 @@
 // 	$( "p" ).text(tabURL);
 // });
 
+var time = 1;
 
-// Connect to background of extension to receive timing events
-var port = chrome.runtime.connect();
-port.onMessage.addListener(function(msg) {
-  console.log("FUCK YOU JAKE");
-});
+
 
 function addStyleString(str) {
     var node = document.createElement('style');
@@ -68,6 +65,12 @@ changeTime('1:00');
 changeTime('2:00');
 changeTime('3:30');
 
+// Connect to background of extension to receive timing events
+var port = chrome.runtime.connect();
+port.onMessage.addListener(function(msg) {
+  console.log("FUCK YOU JAKE");
+  changeTime(time++);
+});
 
 
 

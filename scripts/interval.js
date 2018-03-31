@@ -1,9 +1,8 @@
+var ports = [];
 
-
-var port;
 
 chrome.runtime.onConnect.addListener(function(newPort) {
-    port = newPort;
+    ports.push(newPort);
 });
 
 setInterval(function() {
@@ -15,5 +14,8 @@ function interval() {
 	console.log("tic");
 
 	checkStatus();
-	port.postMessage({joke: "Knock knock"});
+
+	for (var i = 0 ; i < ports.length; i++)
+		ports[i].postMessage({joke: "Knock knock"});
+
 }
