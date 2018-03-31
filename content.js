@@ -61,6 +61,17 @@ changeTime('1:00');
 changeTime('2:00');
 changeTime('3:00');
 
+time = 0; 
+chrome.runtime.onConnect.addListener(function(port) {
+  port.onMessage.addListener(function(msg) {
+  	console.log("changeTime");
+  	if(port.name == "timetick") {
+	  	time++;
+	    changeTime('2:'+ time);
+	}
+  });
+});
+
 
 
 
