@@ -6,8 +6,25 @@
 	"permissions": ["activeTab","declarativeContent", "storage"],
 
 	"browser_action": {
+<<<<<<< HEAD
 		"default_icon": "icon.png"
 	},
+=======
+		"default_icon": "icon.png",
+		"default_popup": "popup.html"
+	},
+	"content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"],
+        "run_at": "document_end"
+      }
+	],
+	"permissions":[
+        "activeTab",
+		"storage"
+	]
+>>>>>>> a7d0b3ca3ab45e5c8344cd2325512168bc99b48f
 
 	
 	"background" : {
