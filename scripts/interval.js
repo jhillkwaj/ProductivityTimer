@@ -46,11 +46,13 @@ function interval() {
 	
 	//console.log("tic");
 
-	//checkStatus();
+	enabled = checkStatus();
 
 	// Increase the time for each website by 1
-	for (var website in times) {
-		times[website]++;
+	if(enabled) {
+		for (var website in times) {
+			times[website]++;
+		}
 	}
 
 	// Send out time ticks to each tab connected to this extension

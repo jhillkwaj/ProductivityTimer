@@ -33,7 +33,7 @@ function off() {
 	}
 
 
-checkStatus(enabled);
+setStatus(enabled);
 
 
 
