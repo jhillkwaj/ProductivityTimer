@@ -3,21 +3,23 @@
 	"version": "1.0",
 	"manifest_version": 2,
 	"description": "Keeps track of your browsing time",
+	"permissions": ["activeTab","declarativeContent", "storage"],
+
 	"browser_action": {
-		"default_icon": "icon.png",
-		"default_popup": "popup.html"
+		"default_icon": "icon.png"
 	},
+
 	"content_scripts": [
       {
         "matches": ["<all_urls>"],
         "js": ["content.js"],
-        "run_at": "document_end"
+        "run_at": "document_idle"
       }
 	],
-	"permissions":[
-        "activeTab",
-		"storage"
-	]
 
+	
+	"background" : {
+    	"scripts" : ["scripts/popup.js", "scripts/interval.js"]
+  	}
 
 }
