@@ -54,7 +54,7 @@ addStyleString('.alfred { color: red;'+
     //'margin: auto;' +
     'padding: 20px;' +
     'border: 2px solid #888;' +
-    'width: 15%;' +
+    'width: 18%;' +
 	 '}');
 
 //injectHTML("Clock: 00:12:12");
@@ -65,14 +65,18 @@ changeTime('1:00');
 changeTime('2:00');
 changeTime('3:30');
 
+var date = new Date(null);
+
 // Connect to background of extension to receive timing events
 var port = chrome.runtime.connect();
 port.onMessage.addListener(function(msg) {
   console.log("FUCK YOU JAKE");
+  time++;
+   date.setSeconds(time);
   if(msg.content=="true")
-  	changeTime(time++);
+  	changeTime(time);
   else
-  	changeTime(1000+ time++);
+  	changeTime(date.toISOString().substr(11, 8));
 });
 
 
