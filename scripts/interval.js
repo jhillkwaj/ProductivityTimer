@@ -14,6 +14,6 @@ function interval() {
 	console.log("tic");
 	var enabled = checkStatus();
 	for (var i = 0 ; i < ports.length; i++)
-		ports[i].postMessage({joke: "Knock knock"});
+		ports[i].postMessage({enabled: ""+enabled});
 
 }

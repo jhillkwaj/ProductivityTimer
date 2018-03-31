@@ -7,7 +7,7 @@
 // 	$( "p" ).text(tabURL);
 // });
 
-var time = 1;
+var time = 0;
 
 
 
@@ -70,13 +70,14 @@ var date = new Date(null);
 // Connect to background of extension to receive timing events
 var port = chrome.runtime.connect();
 port.onMessage.addListener(function(msg) {
-  console.log("FUCK YOU JAKE");
-  time++;
-   date.setSeconds(time);
-  if(msg.content=="true")
-  	changeTime(time);
-  else
-  	changeTime(date.toISOString().substr(11, 8));
+	console.log("FUCK YOU JAKE " + msg.enabled);
+	date.setSeconds(time);
+	if(msg.enabled=="true"){
+		time++;
+		changeTime(date.toISOString().substr(11, 8));
+	}
+	else
+		changeTime(date.toISOString().substr(11, 8));
 });
 
 

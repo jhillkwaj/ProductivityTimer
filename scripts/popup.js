@@ -5,8 +5,8 @@ console.log("Start");
 enabled = false;
 //Check to see if site is enabled
 function checkStatus() {
-	enabled = false;
-	setStatus(enabled);
+	//enabled = false;
+	//setStatus(enabled); //Add this back once we have a way to keep track of sites
 	return enabled;
 }
 
