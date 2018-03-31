@@ -19,7 +19,8 @@
 
 	
 	"background" : {
-    	"scripts" : ["scripts/popup.js", "scripts/interval.js"]
+    	"scripts" : ["scripts/popup.js", "scripts/interval.js"],
+    	"persistent" : true
   	}
 
 }
