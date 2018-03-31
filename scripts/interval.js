@@ -4,4 +4,6 @@ setInterval(function() {
 
 function timer() {
 	console.log("tic");
+
+	checkStatus();
 }
