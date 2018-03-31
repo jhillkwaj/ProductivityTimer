@@ -7,6 +7,7 @@ enabled = false;
 function checkStatus() {
 	enabled = false;
 	setStatus(enabled);
+	return enabled;
 }
 
 //Set the status to enabled or disabled
@@ -44,10 +45,3 @@ chrome.browserAction.onClicked.addListener(
 		setStatus(enabled);
 });
 
-
-chrome.runtime.onMessage.addListener(function(request, sender) {
-    if (request.type == "new-page") {
-      console.log("message");
-      checkStatus();
-    }
-});
