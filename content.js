@@ -8,6 +8,7 @@ function injectHTML(text) {
       
     //document.body.innerHTML += text;
     var x = document.createElement("div"); 
+    x.id = 'alfredClock';
     x.className = 'alfred';                       // Create a <p> node
 	var t = document.createTextNode(text);    // Create a text node
 	x.appendChild(t);                                           // Append the text to <p>
@@ -15,6 +16,13 @@ function injectHTML(text) {
 
 }
 
+
+function changeTime(newTime) {
+	var clock = document.getElementById('alfredClock');
+	clock.innerHTML = '';
+	var t = document.createTextNode(newTime);
+	clock.appendChild(t);
+}
 
 console.log("injecting productivity timer...");
 
@@ -38,8 +46,20 @@ addStyleString('.alfred { color: red;'+
 
 //injectHTML("Clock: 00:12:12");
 
-injectHTML('clock: 12:00');
+injectHTML('clock: 00:00');
 
+changeTime('1:00');
+changeTime('2:00');
+changeTime('3:00');
+
+time = 0; 
+chrome.runtime.onConnect.addListener(function(port) {
+  console.assert(port.name == "timetick");
+  port.onMessage.addListener(function(msg) {
+  	time++;
+    changeTime('2:'+ time);
+  });
+});
 
 
 
