@@ -1,8 +1,13 @@
 let toggleButton = document.getElementById('toggle');
 console.log("Start");
 
-//Check to see if site is enabled
+
 enabled = false;
+//Check to see if site is enabled
+function checkStatus() {
+	enabled = false;
+	setStatus(enabled);
+}
 
 //Set the status to enabled or disabled
 function setStatus(status) {
@@ -27,7 +32,7 @@ function off() {
 	}
 
 
-setStatus(enabled);
+checkStatus(enabled);
 
 
 
@@ -36,5 +41,13 @@ setStatus(enabled);
 chrome.browserAction.onClicked.addListener(
 	function(tab) { 
 		enabled = !enabled;
-		setStatus(!enabled);
-	});
+		setStatus(enabled);
+});
+
+
+chrome.runtime.onMessage.addListener(function(request, sender) {
+    if (request.type == "new-page") {
+      console.log("message");
+      checkStatus();
+    }
+});
