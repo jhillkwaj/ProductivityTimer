@@ -7,6 +7,13 @@
 // 	$( "p" ).text(tabURL);
 // });
 
+
+// Connect to background of extension to receive timing events
+var port = chrome.runtime.connect();
+port.onMessage.addListener(function(msg) {
+  console.log("FUCK YOU JAKE");
+});
+
 function addStyleString(str) {
     var node = document.createElement('style');
     node.innerHTML = str;
@@ -17,6 +24,7 @@ function injectHTML(text) {
       
     //document.body.innerHTML += text;
     var x = document.createElement("div"); 
+    x.id = 'alfredClock';
     x.className = 'alfred';                       // Create a <p> node
 	var t = document.createTextNode(text);    // Create a text node
 	x.appendChild(t);                                           // Append the text to <p>
@@ -24,6 +32,13 @@ function injectHTML(text) {
 
 }
 
+
+function changeTime(newTime) {
+	var clock = document.getElementById('alfredClock');
+	clock.innerHTML = '';
+	var t = document.createTextNode(newTime);
+	clock.appendChild(t);
+}
 
 console.log("injecting productivity timer...");
 
@@ -47,7 +62,12 @@ addStyleString('.alfred { color: red;'+
 
 //injectHTML("Clock: 00:12:12");
 
-injectHTML('clock: 12:00');
+injectHTML('clock: 00:00');
+
+changeTime('1:00');
+changeTime('2:00');
+changeTime('3:30');
+
 
 
 

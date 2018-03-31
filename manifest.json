@@ -1,9 +1,9 @@
 {
 	"name": "Productivity Timer",
-	"version": "1.2",
+	"version": "1.0",
 	"manifest_version": 2,
 	"description": "Keeps track of your browsing time",
-	"permissions": ["activeTab","declarativeContent", "storage", "tabs"],
+	"permissions": ["activeTab","declarativeContent", "storage"],
 
 	"browser_action": {
 		"default_icon": "icon.png"
@@ -12,14 +12,15 @@
 	"content_scripts": [
       {
         "matches": ["<all_urls>"],
-        "js": ["content.js", "scripts/checkicon.js"],
+        "js": ["content.js"],
         "run_at": "document_end"
       }
 	],
 
 	
 	"background" : {
-    	"scripts" : ["scripts/popup.js", "scripts/interval.js", "scripts/timer.js"]
+    	"scripts" : ["scripts/popup.js", "scripts/interval.js"],
+    	"persistent" : true
   	}
 
 }
