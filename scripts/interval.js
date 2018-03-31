@@ -1,12 +1,12 @@
 setInterval(function() {
-  timer();
+  interval();
 }, 1000);
 
-var port = chrome.runtime.connect({name: "timetic"});
+//var port = chrome.runtime.connect({name: "timetic"});
 
-function timer() {
+function interval() {
 	console.log("tic");
 
 	checkStatus();
-	port.postMessage({joke: "Knock knock"});
+	//port.postMessage({joke: "Knock knock"});
 }
