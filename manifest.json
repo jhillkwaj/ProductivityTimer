@@ -19,7 +19,7 @@
 
 	
 	"background" : {
-    	"scripts" : ["scripts/popup.js"]
+    	"scripts" : ["scripts/popup.js", "scripts/interval.js"]
   	}
 
 }
