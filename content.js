@@ -69,7 +69,10 @@ changeTime('3:30');
 var port = chrome.runtime.connect();
 port.onMessage.addListener(function(msg) {
   console.log("FUCK YOU JAKE");
-  changeTime(time++);
+  if(msg.content=="true")
+  	changeTime(time++);
+  else
+  	changeTime(1000+ time++);
 });
 
 

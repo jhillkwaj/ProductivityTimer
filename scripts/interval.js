@@ -13,10 +13,7 @@ setInterval(function() {
 function interval() {
 	console.log("tic");
 	var enabled = checkStatus();
-
-	if(enabled) {
 	for (var i = 0 ; i < ports.length; i++)
 		ports[i].postMessage({joke: "Knock knock"});
-	}
 
 }
