@@ -61,7 +61,16 @@ var port = chrome.runtime.connect({"name": window.location.hostname});
 port.onMessage.addListener(function(msg) {
 	//console.log("FUCK YOU JAKE " + msg.enabled);
 	date.setSeconds(msg.counter);
-	changeTime(date.toISOString().substr(11, 8));
+	console.log(msg.counter);
+	var hours = Math.floor(msg.counter / (60 * 60));
+	var minutes = Math.floor((msg.counter / 60) % (60*60));
+	var seconds = Math.floor((msg.counter) % 60);
+
+	if(seconds < 10)
+		seconds = '0' + seconds 
+	if(minutes < 10)
+		minutes = '0' + minutes 
+	changeTime(hours + ":" + minutes + ":" + seconds);
 });
 
 
