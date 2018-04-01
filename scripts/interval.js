@@ -49,9 +49,24 @@ function interval() {
 	enabled = checkStatus();
 
 	// Increase the time for each website by 1
+	chrome.tabs.query({
+    active: true,               // Select active tabs
+    lastFocusedWindow: true     // In the current window
+    }, function(tabs) {
+    var tabURL = tabs[0].url;
+    var host = tabURL.split("/")[2];
+
+
+	//console.log("tabs:" + tabs);
+	//console.log("host:" + host);
+	//console.log("website:" + website);
+
 	if(enabled) {
 		for (var website in times) {
-			times[website]++;
+			console.log("host:" + host);
+			console.log("website:" + website);
+			if (website == host)
+				times[website]++;
 		}
 	}
 
@@ -62,5 +77,12 @@ function interval() {
 		var time = times[ports[i]["domain"]];
 		ports[i]["port"].postMessage({counter: time});
 	}
+
+
+
+
+});
+
+
 
 }
